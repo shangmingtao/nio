@@ -12,7 +12,7 @@ import java.io.Reader;
 public class ReaderDemo {
 
     public static void main(String[] args)throws Exception {
-        Reader reader = new FileReader("D:\\MILO\\IdeaProject\\nio\\io\\ReaderDemo");
+        Reader reader = new FileReader("D:\\MILO\\GIT\\nio\\io\\ReaderDemo");
         int data = reader.read();
         while(data != -1){
             char dataChar = (char) data;

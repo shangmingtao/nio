@@ -13,7 +13,7 @@ public class SystemDemo {
     public static void main(String[] args) throws FileNotFoundException {
 
 
-        OutputStream output = new FileOutputStream("D:\\MILO\\IdeaProject\\nio\\io\\SystemOut");
+        OutputStream output = new FileOutputStream("D:\\MILO\\GIT\\nio\\io\\SystemOut");
         PrintStream printOut = new PrintStream(output);
         System.setOut(printOut);
         System.setErr(printOut);

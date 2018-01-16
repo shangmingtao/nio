@@ -13,7 +13,7 @@ import java.io.Writer;
 public class WriterDemo {
 
     public static void main(String[] args) throws Exception {
-        Writer writer = new FileWriter("D:\\MILO\\IdeaProject\\nio\\io\\WriterDemo");
+        Writer writer = new FileWriter("D:\\MILO\\GIT\\nio\\io\\WriterDemo");
         writer.write("你好 milo");
         writer.close();
     }

@@ -17,7 +17,7 @@ public class InputStreamDemo {
 
 
         //单个读取
-        InputStream inputStream = new FileInputStream("D:\\MILO\\IdeaProject\\nio\\io\\FileInputStreamDemo");
+        InputStream inputStream = new FileInputStream("D:\\MILO\\GIT\\nio\\io\\FileInputStreamDemo");
         int data = inputStream.read();
         while(data != -1){
             System.out.print((char)data);
@@ -30,7 +30,7 @@ public class InputStreamDemo {
         System.out.println();
 
         //数组读取
-        InputStream inputstream = new FileInputStream("D:\\MILO\\IdeaProject\\nio\\io\\FileInputStreamDemo");
+        InputStream inputstream = new FileInputStream("D:\\MILO\\GIT\\nio\\io\\FileInputStreamDemo");
         byte[] dataByte = new byte[1024];
         int bytesRead = inputstream.read(dataByte);
         while(bytesRead != -1) {
@@ -46,7 +46,7 @@ public class InputStreamDemo {
         System.out.println();
 
         //数组读取 指定长度offset:开始位置    length:长度
-        InputStream inputstream2 = new FileInputStream("D:\\MILO\\IdeaProject\\nio\\io\\FileInputStreamDemo");
+        InputStream inputstream2 = new FileInputStream("D:\\MILO\\GIT\\nio\\io\\FileInputStreamDemo");
         byte[] dataByte2 = new byte[5];
         int bytesRead2 = inputstream2.read(dataByte2 , 3 , 2);
         while(bytesRead2 != -1) {

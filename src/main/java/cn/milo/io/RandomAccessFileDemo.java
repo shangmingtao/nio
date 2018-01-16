@@ -8,17 +8,17 @@ import java.io.RandomAccessFile;
 public class RandomAccessFileDemo {
 
     public static void main(String[] args) throws Exception {
-        RandomAccessFile file = new RandomAccessFile("D:\\MILO\\IdeaProject\\nio\\io\\RandomAccessFileDemo", "rw");
-        file.seek(200);
-//        int aByte = file.read();
-//        while (aByte != -1){
-//            System.out.println((char) aByte);
-//            aByte = file.read();
-//        }
+        RandomAccessFile file = new RandomAccessFile("D:\\MILO\\GIT\\nio\\io\\RandomAccessFileDemo", "rw");
+        file.seek(15);
+        int aByte = file.read();
+        while (aByte != -1){
+            System.out.println((char) aByte);
+            aByte = file.read();
+        }
 
-//        long pointer = file.getFilePointer();
-//        System.out.println(pointer); //当前位置
-        file.write("你好".getBytes());
-//        file.close();
+        long pointer = file.getFilePointer();
+        System.out.println(pointer); //当前位置
+        file.write("abcde world".getBytes());
+        file.close();
     }
 }
