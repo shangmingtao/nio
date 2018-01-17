@@ -17,6 +17,7 @@ public class DataInputStreamDemo {
         DataInputStream dataInputStream = new DataInputStream(new FileInputStream("D:\\MILO\\GIT\\nio\\io\\DataInputStreamDemo"));
         DataOutputStream output = new DataOutputStream(new FileOutputStream("D:\\MILO\\GIT\\nio\\io\\DataInputStreamDemo"));
         output.writeInt(10);
+        output.writeBytes("aaa");
         output.close();
 
         int value = dataInputStream.readInt();
