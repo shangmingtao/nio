@@ -1,7 +1,7 @@
+package cn.milo.simpledataformat;
+
 import java.text.*;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class thread1 implements Runnable{
 	
@@ -12,7 +12,7 @@ public class thread1 implements Runnable{
 		// TODO Auto-generated method stub
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-//		System.out.println(demo.getlocal());
+//		System.out.println(cn.milo.simpledataformat.demo.getlocal());
 
 		while(true){
 			try {

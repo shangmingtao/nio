@@ -1,6 +1,7 @@
+package cn.milo.simpledataformat;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class demo {
 	
@@ -17,9 +18,9 @@ public class demo {
 //		System.out.println(new SimpleDateFormat());
 //		System.out.println(new SimpleDateFormat());
 //		System.out.println(new SimpleDateFormat());
-//		System.out.println(new demo());
-//		System.out.println(new demo());
-//		System.out.println(new demo());
+//		System.out.println(new cn.milo.simpledataformat.demo());
+//		System.out.println(new cn.milo.simpledataformat.demo());
+//		System.out.println(new cn.milo.simpledataformat.demo());
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //		return s;
 	}

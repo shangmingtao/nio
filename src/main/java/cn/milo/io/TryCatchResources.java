@@ -56,7 +56,7 @@ public class TryCatchResources  implements Closeable {
         }
 
         System.out.println("----end2----");
-        //demo 3
+        //cn.milo.simpledataformat.demo 3
         try (TryCatchResources d2 = new TryCatchResources(false, true, "b");) {
             int k = 1/0;
         } finally {
@@ -64,7 +64,7 @@ public class TryCatchResources  implements Closeable {
         }
 
         System.out.println("----end3----");
-        //demo 4
+        //cn.milo.simpledataformat.demo 4
         try {
             throw new IOException("in main4");
         } finally {

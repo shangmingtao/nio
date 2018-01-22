@@ -1,8 +1,10 @@
+package cn.milo.simpledataformat;
+
 import java.text.SimpleDateFormat;
 import java.util.Random;
 
 /******************************************************
- ****** @ClassName   : MySimpleDataFormat.java                                            
+ ****** @ClassName   : cn.milo.simpledataformat.MySimpleDataFormat.java
  ****** @author      : milo ^ ^                     
  ****** @date        : 2018 01 05 0:03     
  ****** @version     : v1.0.x                      

@@ -1,8 +1,10 @@
+package cn.milo.simpledataformat;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /******************************************************
- ****** @ClassName   : DateFormatTest.java
+ ****** @ClassName   : cn.milo.simpledataformat.DateFormatTest.java
  ****** @author      : milo ^ ^                     
  ****** @date        : 2018 01 04 21:41     
  ****** @version     : v1.0.x                      
