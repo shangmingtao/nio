@@ -10,7 +10,11 @@ import java.nio.channels.DatagramChannel;
 public class DatagramChannelDemo {
 
     public static void main(String[] args)throws Exception {
+<<<<<<< HEAD
         //company
+=======
+        //github
+>>>>>>> 9ad21c78dd02cd6454164753d0d44aa84ea93e89
         DatagramChannel channel = DatagramChannel.open();
         channel.socket().bind(new InetSocketAddress("127.0.0.1",8888));
 
