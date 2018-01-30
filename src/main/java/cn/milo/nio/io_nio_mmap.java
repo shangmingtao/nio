@@ -1,9 +1,6 @@
 package cn.milo.nio;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
@@ -100,17 +97,18 @@ public class io_nio_mmap {
         long start = System.currentTimeMillis();
         RandomAccessFile randomAccessFile = new RandomAccessFile(filePath , "rw");
         FileChannel channel = randomAccessFile.getChannel();
-        ByteBuffer byteBuffer = ByteBuffer.allocateDirect((int)randomAccessFile.length());
+//        ByteBuffer byteBuffer = ByteBuffer.allocateDirect((int)randomAccessFile.length());
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024);
 
         int byteCount = 0;
         int bytesRead = channel.read(byteBuffer);
 
         while(bytesRead != -1){
             byteBuffer.flip();
-            while(byteBuffer.hasRemaining()){
-                byteBuffer.get();
-                byteCount ++;
-            }
+//            while(byteBuffer.hasRemaining()){
+//                byteBuffer.get();
+//                byteCount ++;
+//            }
             byteBuffer.clear();//清空缓存区  clear()方法会清空整个缓冲区。compact()方法只会清除已经读过的数据
             bytesRead = channel.read(byteBuffer);
         }
@@ -143,12 +141,39 @@ public class io_nio_mmap {
         channel.close();
     }
 
+    public static void mmap2()throws Exception{
+        File file = new File(filePath);
+        FileInputStream in = new FileInputStream(file);
+        FileChannel channel = in.getChannel();
+        MappedByteBuffer buff = channel.map(FileChannel.MapMode.READ_ONLY, 0,
+                channel.size());
+
+        byte[] b = new byte[1024];
+        int len = (int) file.length();
+
+        long begin = System.currentTimeMillis();
+
+        for (int offset = 0; offset < len; offset += 1024) {
+
+            if (len - offset > 1024) {
+                buff.get(b);
+            } else {
+                buff.get(new byte[len - offset]);
+            }
+        }
+
+        long end = System.currentTimeMillis();
+        System.out.println("mmap2 : " + (end - begin));
+    }
+
     public static void main(String[] args)throws Exception {
 //        allocate();
         allocateDirect();
-        mmap();
-        inputStreamDemo();
-        bufferInputStreamDemo();
+//        mmap();
+        mmap2();
+//        inputStreamDemo();
+//        bufferInputStreamDemo();
+        //http://blog.csdn.net/fcbayernmunchen/article/details/8635427
     }
 
 }
