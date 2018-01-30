@@ -17,12 +17,14 @@ import java.util.Date;
  *******************************************************/
 public class io_nio_mmap {
 
+    private static String filePath = "/Users/mac/Documents/安装程序/eclipse-standard-kepler-SR1-win32.zip";
+
     /*
     normal io
      */
     public static void inputStreamDemo()throws Exception{
         long start = System.currentTimeMillis();
-        InputStream input = new FileInputStream("C:\\Users\\admin\\Desktop\\笔记\\redis学习笔记\\redis项目.rar");
+        InputStream input = new FileInputStream(filePath);
         byte[] bytes = new byte[1024]; //1024*1024
 
         int byteCount = 0;
@@ -46,7 +48,7 @@ public class io_nio_mmap {
      */
     public static void bufferInputStreamDemo()throws Exception{
         long start = System.currentTimeMillis();
-        BufferedInputStream input = new BufferedInputStream(new FileInputStream("C:\\Users\\admin\\Desktop\\笔记\\redis学习笔记\\redis项目.rar"),8*1024);
+        BufferedInputStream input = new BufferedInputStream(new FileInputStream(filePath),8*1024);
         byte[] bytes = new byte[1024]; //1024*1024
 
         byte b1;
@@ -66,13 +68,13 @@ public class io_nio_mmap {
     }
 
     /*
-    allocateDirect
-     */
-    public static void allocateDirect()throws Exception{
+  allocate
+   */
+    public static void allocate()throws Exception{
         long start = System.currentTimeMillis();
-        RandomAccessFile randomAccessFile = new RandomAccessFile("C:\\Users\\admin\\Desktop\\笔记\\redis学习笔记\\redis项目.rar" , "rw");
+        RandomAccessFile randomAccessFile = new RandomAccessFile(filePath , "rw");
         FileChannel channel = randomAccessFile.getChannel();
-        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(64);
+        ByteBuffer byteBuffer = ByteBuffer.allocate((int)randomAccessFile.length());
 
         int byteCount = 0;
         int bytesRead = channel.read(byteBuffer);
@@ -80,7 +82,33 @@ public class io_nio_mmap {
         while(bytesRead != -1){
             byteBuffer.flip();
             while(byteBuffer.hasRemaining()){
-//                byteBuffer.get();
+                byteBuffer.get();
+                byteCount ++;
+            }
+            byteBuffer.clear();//清空缓存区  clear()方法会清空整个缓冲区。compact()方法只会清除已经读过的数据
+            bytesRead = channel.read(byteBuffer);
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("allocate : " + (end - start) + " , byteCount = " + byteCount);
+        channel.close();
+    }
+
+    /*
+    allocateDirect
+     */
+    public static void allocateDirect()throws Exception{
+        long start = System.currentTimeMillis();
+        RandomAccessFile randomAccessFile = new RandomAccessFile(filePath , "rw");
+        FileChannel channel = randomAccessFile.getChannel();
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect((int)randomAccessFile.length());
+
+        int byteCount = 0;
+        int bytesRead = channel.read(byteBuffer);
+
+        while(bytesRead != -1){
+            byteBuffer.flip();
+            while(byteBuffer.hasRemaining()){
+                byteBuffer.get();
                 byteCount ++;
             }
             byteBuffer.clear();//清空缓存区  clear()方法会清空整个缓冲区。compact()方法只会清除已经读过的数据
@@ -96,7 +124,7 @@ public class io_nio_mmap {
      */
     public static void mmap()throws Exception {
         long start = System.currentTimeMillis();
-        RandomAccessFile randomAccessFile = new RandomAccessFile("C:\\Users\\admin\\Desktop\\笔记\\redis学习笔记\\redis项目.rar", "rw");
+        RandomAccessFile randomAccessFile = new RandomAccessFile(filePath, "rw");
         FileChannel channel = randomAccessFile.getChannel();
 
         int byteCount = 0;
@@ -111,15 +139,16 @@ public class io_nio_mmap {
             }
         }
         long end = System.currentTimeMillis();
-        System.out.println("allocateDirect : " + (end - start) + " , byteCount = " + byteCount);
+        System.out.println("mmap : " + (end - start) + " , byteCount = " + byteCount);
         channel.close();
     }
 
     public static void main(String[] args)throws Exception {
-        inputStreamDemo();
-        bufferInputStreamDemo();
+//        allocate();
         allocateDirect();
         mmap();
+        inputStreamDemo();
+        bufferInputStreamDemo();
     }
 
 }
